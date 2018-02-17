@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "geolib": "^2.0.24",
     "mongoose": "^5.0.6"
   }
 }

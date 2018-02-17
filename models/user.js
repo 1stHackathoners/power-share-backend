@@ -3,10 +3,9 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   username: String,
-  credit: String,
-  session: { type: Boolean, default: false },
-  session_start: Date,
-  session_end: Date
+  password: String,
+  credit: Number,
+  session: { isOn:{ type: Boolean, default: false }, session_start: Date, session_end: Date }
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

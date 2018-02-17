@@ -7,6 +7,7 @@ var PORT = process.env.PORT || 3000;
 
 // define route modules here
 var pbRoutes = require('./routes/pbRoutes');
+var userRoutes = require('./routes/userRoutes');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // set router middlewares
 app.use('/find', pbRoutes);
+app.use('/user', userRoutes);
 
 var server = app.listen(PORT, function () {
   var host = server.address().address;

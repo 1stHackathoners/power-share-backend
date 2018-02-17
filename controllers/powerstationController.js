@@ -1,5 +1,4 @@
 var PowerStation = require('../models/powerstation');
-var geolib = require('geolib');
 
 exports.find_near_pb = function(req, res){
   var lat = req.body.latitude;

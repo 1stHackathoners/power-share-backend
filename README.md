@@ -12,7 +12,7 @@ _only post requests handled_
 * range (in meters)
 
 **response json:**
-* result -> array of nearby stations' locations in the format { name, location: [longitude, latitude], available_pb_num, available_cp_num }..........._(pb=powerbank, cp=charge port)_
+* result: array of nearby stations' locations in the format { name, location: [longitude, latitude], available_pb_num, available_cp_num }..........._(pb=powerbank, cp=charge port)_
 
 ### /find/chargeport
 **request params:**

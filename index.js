@@ -6,11 +6,11 @@ var mongoose = require('mongoose');
 var PORT = process.env.PORT || 3000;
 
 // define route modules here
-//var index = require('./routes/index');
+var pbRoutes = require('./routes/pbRoutes');
 
 var app = express();
 
-mongoose.connect('mongodb+srv://meverg:123456gs@powersharedb-fsk5o.mongodb.net/PowerShareDB');
+mongoose.connect('mongodb://dummy:foo123bar@ds239368.mlab.com:39368/powershare');
 var db = mongoose.connection;
 
 db.on('connected', function() {
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // set router middlewares
-//app.use('/', index);
+app.use('/find', pbRoutes);
 
 var server = app.listen(PORT, function () {
   var host = server.address().address;

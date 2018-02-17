@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PowerStationSchema = new Schema({
+  name: String,
   location: { 
     type: [Number], // lon, lat
     index: '2dsphere'

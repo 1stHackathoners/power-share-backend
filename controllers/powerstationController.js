@@ -33,8 +33,8 @@ exports.find_near_pb = function(req, res, next){
 
 exports.find_near_cp = function(req,res,next){
 
-  req.checkBody('longitude', 'Enter a valid longitude!').isLatLong();
-  req.checkBody('latitude', 'Enter a valid latitude!').isLatLong();
+  req.checkBody('longitude', 'Enter a valid longitude!').isFloat({ max: 180, min: -180});
+  req.checkBody('latitude', 'Enter a valid latitude!').isFloat({ max: 90, min: -90 });
   req.checkBody('range', 'Enter a valid range! (in meters)').isFloat();
   var validation_errors = req.validationErrors();
   if(validation_errors){ res.send(validation_errors); return; };

@@ -27,7 +27,7 @@ exports.find_near_pb = function(req, res, next){
     },
     function(error, result) {
       if(error){ return next(error); };
-      res.json({'result': result});
+      res.json({'result': result, 'code': 1});
   });
 };
 
@@ -58,6 +58,6 @@ exports.find_near_cp = function(req,res,next){
     },
     function(error, result) {
       if(error){ return next(error); };
-      res.json({'result': result});
+      res.json({'result': result, 'code': 1});
   });
 };

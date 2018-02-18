@@ -20,7 +20,7 @@ exports.user_info = function(req, res, next) {
 exports.session_controller = function(req, res, next) {
 
   req.checkBody('username', 'Enter an alphanumeric username!').isAlphanumeric();
-  req.checkBody('changedTo', 'changedTo must be a boolean!').isBoolean();
+  req.checkBody('changedTo', 'changedTo must be a string!').isAlpha();
   var validation_errors = req.validationErrors();
   if(validation_errors){ res.send(validation_errors); return; };
 
@@ -33,7 +33,7 @@ exports.session_controller = function(req, res, next) {
     if (!result){ res.json({ 'msg': 'No such username!', 'code': 0 }); return; };
     
     console.log('check 1');
-    if (req.body.changedTo) {
+    if (req.body.changedTo === 'true') {
       console.log('check 2');
       if(result.credit < 5){ res.json({ 'msg': 'session not started: low credit', 'code': 0 }); }
       if(!result.session['isOn']){

@@ -108,14 +108,21 @@ exports.session_controller = function(req, res, next) {
 
 exports.create_user = function(req, res, next) {
 
+  console.log(req.body.username);
+  console.log(req.body.password);
+
   req.checkBody('username', 'Enter an alphanumeric username!').isAlphanumeric();
   req.checkBody('password', 'Enter an alphanumeric password!').isAlphanumeric();
   var validation_errors = req.validationErrors();
-  if(validation_errors){ res.send(validation_errors); return; };
+  if(validation_errors){ console.log('check 1'); res.send(validation_errors); return; };
 
+  console.log('check 2');
   User.findOne( { username: req.body.username }, function(error, result){
-    if(result){ res.json({ 'msg': 'username already taken', 'code': 0 }); return res.end(); }
+    console.log('check 3');
+    if(result){ console.log('check 4'); res.json({ 'msg': 'username already taken', 'code': 0 }); return res.end(); }
     else {
+
+      console.log('check 4');
       var usr = new User({
         username: req.body.username,
         password: req.body.password,
@@ -123,8 +130,8 @@ exports.create_user = function(req, res, next) {
       });
 
       usr.save(function(err){
-        if(err){ return next(err); }
-        else{ return res.json({ 'msg': 'user created successfully', 'code': 1 }); }
+        if(err){ console.log('check 5'); return next(err); }
+        else{ console.log('check 6'); return res.json({ 'msg': 'user created successfully', 'code': 1 }); }
       });
     }
   });

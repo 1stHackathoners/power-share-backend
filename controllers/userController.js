@@ -32,12 +32,9 @@ exports.session_controller = function(req, res, next) {
     if (error) { return next(error) };
     if (!result){ res.json({ 'msg': 'No such username!', 'code': 0 }); return; };
     
-    console.log('check 1');
     if (req.body.changedTo === 'true') {
-      console.log('check 2');
       if(result.credit < 5){ res.json({ 'msg': 'session not started: low credit', 'code': 0 }); }
       if(!result.session['isOn']){
-        console.log('check 3');
 
         setter = {};
         setter['session.session_start'] = Date.now();
@@ -69,11 +66,9 @@ exports.session_controller = function(req, res, next) {
             }
           }
         );
-      } else{ console.log('check 4'); res.json({ 'msg': 'user already has a session!', 'code': 0 }); };
+      } else{ res.json({ 'msg': 'user already has a session!', 'code': 0 }); };
     } else{
-      console.log('check 5');
       if(result.session['isOn']){
-        console.log('check 6');
         fee = ( Date.now() - result.session.session_start ) * 0.000003;
         setter = {};
         setter['session.session_end'] = Date.now();
@@ -83,13 +78,11 @@ exports.session_controller = function(req, res, next) {
           { username: result.username }, setter, function(err, user) {
             if(err){console.log(err); return next(err);}
             else{
-              console.log('check 7');
 
               PowerStation.findOne({ name: req.body.psName }, function(ps_err, ps_res ){
                 if(ps_err){console.log(ps_err); return next(ps_err);};
                 if (!ps_res){ res.json({ 'msg': 'No such power station!', 'code': 0 }); return; }
                 else{
-                  console.log('check 8');
 
                   setter = {};
                   setter['available_pb_num'] = ps_res['available_pb_num'] + 1;
@@ -108,7 +101,7 @@ exports.session_controller = function(req, res, next) {
             }
           }
         );
-      } else { console.log('check 9'); res.json({ 'msg': 'user has no session!', 'code': 0 }); };
+      } else { res.json({ 'msg': 'user has no session!', 'code': 0 }); };
     };
   })
 };

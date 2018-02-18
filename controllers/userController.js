@@ -25,6 +25,8 @@ exports.session_controller = function(req, res, next) {
   if(validation_errors){ res.send(validation_errors); return; };
 
   console.log(req.body.username);
+  console.log(req.body.changedTo);
+  console.log(req.body.psName);
   User.findOne({ username: req.body.username }, function(error, result) {
     
     if (error) { return next(error) };
